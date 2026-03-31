@@ -1,0 +1,29 @@
+{
+  "name": "mamoudzoufete",
+  "version": "1.0.0",
+  "description": "mamoudzoufete",
+  "keywords": [
+    "Lidyamoussa2907!"
+  ],
+  "homepage": "https://github.com/Moussa-L/mamoudzoufete#readme",
+  "bugs": {
+    "url": "https://github.com/Moussa-L/mamoudzoufete/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moussa-L/mamoudzoufete.git"
+  },
+  "license": "ISC",
+  "author": "Moussa",
+  "type": "commonjs",
+  "main": "serveur.js",
+  "scripts": {
+    "test": "serveur"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-myconnection": "^1.0.4",
+    "mysql2": "^3.20.0"
+  }
+}
