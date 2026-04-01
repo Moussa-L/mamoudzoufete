@@ -1,0 +1,156 @@
+/* Styles pour la page équipe */
+
+.equipe-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.equipe-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+/* Messages */
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Section ajout membre */
+.add-member-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.btn-add-member {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-add-member:hover {
+    background-color: #0056b3;
+}
+
+/* Grille des membres */
+.membres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* Carte membre */
+.membre-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.membre-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.membre-avatar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    text-align: center;
+}
+
+.avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    margin: 0 auto;
+}
+
+.membre-info {
+    padding: 20px;
+}
+
+.membre-info h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.4em;
+}
+
+.poste {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.contact-info p {
+    margin: 8px 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.contact-info strong {
+    color: #333;
+}
+
+/* État vide */
+.no-members {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px dashed #dee2e6;
+}
+
+.no-members p {
+    margin: 10px 0;
+    color: #6c757d;
+    font-size: 1.1em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .membres-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .equipe-container h1 {
+        font-size: 2em;
+    }
+
+    .membre-card {
+        margin-bottom: 20px;
+    }
+}

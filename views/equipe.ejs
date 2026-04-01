@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipe</title>
+    <link rel="stylesheet" href="/css/equipe.css">
+    <link rel="stylesheet" href="/css/modale.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <script src="/js/modale.js" defer></script>
+    <script src="/js/script.js" defer></script>
+</head>
+<body>
+    <%- include('navbar') %>
+<!-- Toast pour les notifications -->
+    <div id="toast"></div>
+
+    <!-- Barre de navigation -->
+    <%- include('navbar') %>
+
+    <!-- Titre principal -->
+    <h1>Notre Équipe MayGourmet</h1>
+
+    <!-- Modal pour ajouter/modifier un membre -->
+    <%- include('modalEquipe') %>
+
+    <!-- Conteneur des cartes d'équipe -->
+    <div class="row">
+        <% resultatEquipe.forEach((result) => { %>
+            <div class="card">
+                <h2><b><%= result.nom %> <%= result.prenom %></b></h2>
+                <p><%= result.poste %></p>
+                <!--<img src="/images/Gente blanca 3d.jpg" alt="Membre de l'équipe">-->
+                <div class="button-group">
+                    <button type="button" onclick="supprimerMembre('<%= result.id %>')">Supprimer</button>
+                    <input type="button" value="Modifier" onclick="modifierMembre(
+                        '<%= result.id %>',
+                        '<%= result.nom %>',
+                        '<%= result.prenom %>',
+                        '<%= result.mail %>',
+                        '<%= result.telephone %>',
+                        '<%= result.poste %>',
+                        '<%= result.adresse %>',
+                        
+                    )">
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+
+
+     <div class="row">
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Rejoignez-nous</button>
+</div>    
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  
+  <!-- Modal content -->
+<div class="modal-content">
+    <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Création d'un nouveau membre</h2>
+    </div>
+    <div class="modal-body"> 
+        <p>Souhaitez-vous rejoindre notre équipe ?</p>
+        <p>Formulaire de candidature</p>
+
+        <!--formulaire de candidature-->
+        <div class="container">
+            <form id="membreForm" action="/api/equipe" method="post">
+
+                <div class="row">
+
+                    <div class="col-25">
+                        <label for="nomMembreEquipe">Nom:</label>
+                        <input type="text" id="nomMembreEquipe" name="nomMembreEquipe" placeholder="Votre nom..">
+                        
+                    </div> 
+                    
+                    <div class="col-75">
+                        <label for="prenomMembreEquipe">Prénom:</label>
+                        <input type="text" id="prenomMembreEquipe" name="prenomMembreEquipe" placeholder="Votre prénom..">
+                        
+                    </div>
+
+                    <div class="col-25">
+                        <label for="mailMembreEquipe">Email:</label>
+                        <input type="email" id="mailMembreEquipe" name="mailMembreEquipe" placeholder="Votre email..">
+
+                    </div>
+
+                    <div class="col-75">
+
+                        <label for="telephoneMembreEquipe">Téléphone:</label>
+                        <input type="text" id="telephoneMembreEquipe" name="telephoneMembreEquipe" placeholder="Votre téléphone..">
+
+                    </div>
+
+                    <div class="col-25">
+                        <label for="posteMembreEquipe">Poste:</label>
+                        <input type="text" id="posteMembreEquipe" name="posteMembreEquipe" placeholder="Votre poste..">
+                    </div>
+
+
+
+                    <div class="col-25">
+                        <label for="adresseMembreEquipe">Adresse:</label>
+                        <input type="text" id="adresseMembreEquipe" name="adresseMembreEquipe" placeholder="Votre adresse..">
+                    </div>                 
+
+
+                </div>
+
+                <div class="row">
+                    <button id="btnEnregistrer">Envoyer</button>
+                </div>
+            </form>   
+        </div>
+
+    </div>
+
+  
+  
+  <div class="modal-footer">
+    
+    <h3>On cuisine avec MAYGOURMET </h3>
+    
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

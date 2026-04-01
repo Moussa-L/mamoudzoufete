@@ -41,15 +41,40 @@ SELECT * FROM compte;
 
 
 
-
-CREATE TABLE fournisseur (  
+--- Requête de création de la table "contact"
+CREATE TABLE contact (  
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nom VARCHAR(155) NOT NULL,
     responsable VARCHAR(155) NOT NULL,
     telephone VARCHAR(80) NOT NULL,-- ce champ est facultatif
     mail VARCHAR(155) NOT NULL,
     adresse_postale VARCHAR(300) NOT NULL,
-    produit_fournis VARCHAR(255) NOT NULL,
-    presentation VARCHAR(255) NOT NULL,
-
+    societe VARCHAR(255)
+    
 );
+
+--Ajouter un contact
+INSERT INTO contact (nom, responsable, telephone, mail, adresse_postale, societe) VALUES ('Mamoudzou Ville', ' Moussa Lidya', '0606060606', 'mamoudzouville@gmail.com', '9700, Mamoudzou', 'Mamoudzou en fête');
+
+-- Afficher les contacts
+SELECT * FROM contact;
+
+
+
+
+--- Requête de création de la table "equipe"
+CREATE TABLE equipe (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(155) NOT NULL,
+    prenom VARCHAR(155) NOT NULL,
+    mail VARCHAR(100) NOT NULL,-- ce champ est facultatif
+    numero VARCHAR(100) NOT NULL,
+    adresse VARCHAR(255),
+    poste VARCHAR(255) NOT NULL
+);
+
+--Ajouter une équipe
+INSERT INTO equipe (nom, prenom, mail, numero, adresse, poste) VALUES ('Moussa', 'Lidya', 'moussa.lidya@gmail.com', '0606060606', '9700, Mamoudzou', 'Développeur');
+
+-- Afficher les équipes
+SELECT * FROM equipe;

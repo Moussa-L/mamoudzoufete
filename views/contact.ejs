@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Déclaration du codage des caractères UTF-8 -->
+    <meta charset="UTF-8">
+    
+    <!-- Configuration du viewport pour la responsivité mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Titre de la page affichée dans l'onglet du navigateur -->
+    <title>Contact - MayGourmet</title>
+    
+    <!-- Lien vers la feuille de style CSS pour la page contact -->
+    <link rel="stylesheet" href="/css/contact.css">
+    
+    <!-- Lien vers la feuille de style CSS pour la barre de navigation -->
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+
+<!-- Corps de la page avec classe spécifique pour le style contact -->
+<body class="bodycontact">
+    <!-- Inclusion du composant de barre de navigation -->
+    <%- include('navbar') %>
+
+    <!-- Titre principal de la page contact -->
+    <h1>Contactez-nous</h1>
+
+    <!-- Section contenant les informations de contact (téléphone, email, adresse) -->
+    <div class="contact-info">
+        <!-- Numéro de téléphone du restaurant -->
+        <p>Téléphone: +33 1 23 45 67 89</p>
+        
+        <!-- Adresse email pour les demandes de contact -->
+        <p>Email: contact@maygourmet.fr</p>
+        
+        <!-- Adresse physique du restaurant -->
+        <p>Adresse: 123 Rue de la Gastronomie, Paris</p>
+    </div>
