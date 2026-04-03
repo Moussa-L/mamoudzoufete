@@ -16,9 +16,17 @@ SHOW TABLES;
 
 --Ajouter une entreprise
 INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Moussa Harouna', 'Taambati,', 'taambati@gmail.com', '0606060606', 'Militante', 'Bouéni', 'une militante et représentante de la beauté mahoraise.', 'Ouzouri wa Mtroumché');
+--Ajouter une entreprise
+INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Baco ', 'Ali,', 'ali.baco@gmail.com', '0606060606', 'un chanteur et auteur compositeureur', 'Bandrélé', 'Son style de musique[1] est le mgodro.', 'Tama Music');
+
+--Ajouter une entreprise
+INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Fundi', 'Madi,', 'contact@tourisme-centreouest.yt', ' 0269 61 59 72', 'Agriculteur', ' Route nationale 2 - Coconi 97670 Ouangani', 
+'amateur de culture, de gastronomie, d’agriculture.', 'Le Pôle d\Excellence Rurale PER de Mayotte'),('Amida', 'Zily,', 'amida.zily@gmail.com', ' 0269 41 52 63', 'une chanteuse', 'Tsigoni', 'une chanteuse et auteure-compositrice-interprète mahoraise.', 'UVAGA'),('MAMAS', 'Shingo,', 'shinga@gmail.com', '06045356', 'Production ancestrale', 'Bandrélé', ' le travail ancestral des mamas shingos qui produisent un très beau sel blanc.', 'L’Ecomusée du sel de Bandrélé');
 
 -- Afficher les entreprises
 SELECT * FROM entreprise;
+
+--je surpprimer un l
 
 
 --- Requête de création de la table "compte"
@@ -49,7 +57,8 @@ CREATE TABLE contact (
     telephone VARCHAR(80) NOT NULL,-- ce champ est facultatif
     mail VARCHAR(155) NOT NULL,
     adresse_postale VARCHAR(300) NOT NULL,
-    societe VARCHAR(255)
+    societe VARCHAR(255),
+
     
 );
 
@@ -58,6 +67,12 @@ INSERT INTO contact (nom, responsable, telephone, mail, adresse_postale, societe
 
 -- Afficher les contacts
 SELECT * FROM contact;
+
+-- Requête pour ajouter la colonne "entreprise" à la table "contact"
+ALTER TABLE contact ADD entreprise VARCHAR(255);
+
+-- Requête pour renommer la colonne "entreprise" en "organisateur" dans la table "contact"
+ALTER TABLE contact CHANGE entreprise organisateur VARCHAR(255);
 
 
 
@@ -69,12 +84,17 @@ CREATE TABLE equipe (
     prenom VARCHAR(155) NOT NULL,
     mail VARCHAR(100) NOT NULL,-- ce champ est facultatif
     numero VARCHAR(100) NOT NULL,
-    adresse VARCHAR(255),
-    poste VARCHAR(255) NOT NULL
+    poste VARCHAR(255) NOT NULL,
+    adresse VARCHAR(255)
 );
 
 --Ajouter une équipe
-INSERT INTO equipe (nom, prenom, mail, numero, adresse, poste) VALUES ('Moussa', 'Lidya', 'moussa.lidya@gmail.com', '0606060606', '9700, Mamoudzou', 'Développeur');
+INSERT INTO equipe (nom, prenom, mail, numero, poste, adresse) VALUES ('Moussa', 'Lidya', 'moussa.lidya@gmail.com', '0606060606', 'Développeur', '9700, Mamoudzou');
 
 -- Afficher les équipes
 SELECT * FROM equipe;
+-- Requête pour supprimer la colonne "adresse" de la table "equipe"
+ALTER TABLE equipe DROP COLUMN adresse;
+
+--- Requête pour ajouter la colonne "adresse" à la table "equipe"
+ALTER TABLE equipe ADD adresse VARCHAR(255);

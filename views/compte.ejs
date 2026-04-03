@@ -5,50 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/compte.css">
     <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Compte - Inscription</title>
 </head>
 <body>
-   <%- include('navbar') %>
+   <%- include('navbar', { currentPage: 'compte' }) %>
 
-   <div class="container">
-       <h1>Inscription Client</h1>
+   <div class="compte-container">
+       <div class="compte-header">
+           <h1>Créer un Compte</h1>
+           <p>Rejoignez la communauté MayGourmet et découvrez l'excellence culinaire</p>
+       </div>
+
        <form action="/api/compte" method="POST" id="registrationForm">
-           <div class="form-group">
-               <label for="nom">Nom :</label>
-               <input type="text" id="nom" name="nom" required>
+           <div class="form-group required">
+               <label for="nom">Nom</label>
+               <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+           </div>
+
+           <div class="form-group required">
+               <label for="prenom">Prénom</label>
+               <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+           </div>
+
+           <div class="form-group required">
+               <label for="mail">Adresse Email</label>
+               <input type="email" id="mail" name="mail" placeholder="votre.email@exemple.com" required>
+           </div>
+
+           <div class="form-group required">
+               <label for="numero">Numéro de Téléphone</label>
+               <input type="tel" id="numero" name="numero" placeholder="+262 XX XX XX XX" required>
            </div>
 
            <div class="form-group">
-               <label for="prenom">Prénom :</label>
-               <input type="text" id="prenom" name="prenom" required>
+               <label for="adresse">Adresse</label>
+               <input type="text" id="adresse" name="adresse" placeholder="Votre adresse complète">
            </div>
 
-           <div class="form-group">
-               <label for="mail">Email :</label>
-               <input type="email" id="mail" name="mail" required>
+           <div class="form-group required">
+               <label for="mot_de_passe">Mot de Passe</label>
+               <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="••••••••" required>
            </div>
 
-           <div class="form-group">
-               <label for="numero">Numéro de téléphone :</label>
-               <input type="tel" id="numero" name="numero" required>
+           <div class="form-group required">
+               <label for="confirm_password">Confirmer le Mot de Passe</label>
+               <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" required>
            </div>
 
-           <div class="form-group">
-               <label for="adresse">Adresse :</label>
-               <input type="text" id="adresse" name="adresse">
-           </div>
-
-           <div class="form-group">
-               <label for="mot_de_passe">Mot de passe :</label>
-               <input type="password" id="mot_de_passe" name="mot_de_passe" required>
-           </div>
-
-           <div class="form-group">
-               <label for="confirm_password">Confirmer le mot de passe :</label>
-               <input type="password" id="confirm_password" name="confirm_password" required>
-           </div>
-
-           <button type="submit">S'inscrire</button>
+           <button type="submit" class="btn-submit">Créer Mon Compte</button>
        </form>
 
        <% if (typeof message !== 'undefined') { %>
@@ -58,6 +63,53 @@
        <% } %>
    </div>
 
-   <script src="/js/script.js"></script>
+   <script>
+       // Validation du formulaire côté client
+       document.getElementById('registrationForm').addEventListener('submit', function(e) {
+           const password = document.getElementById('mot_de_passe').value;
+           const confirmPassword = document.getElementById('confirm_password').value;
+
+           if (password !== confirmPassword) {
+               e.preventDefault();
+               alert('Les mots de passe ne correspondent pas.');
+               return false;
+           }
+
+           if (password.length < 6) {
+               e.preventDefault();
+               alert('Le mot de passe doit contenir au moins 6 caractères.');
+               return false;
+           }
+       });
+
+       // Animation des champs de formulaire au focus
+       const formInputs = document.querySelectorAll('.form-group input');
+       formInputs.forEach(input => {
+           input.addEventListener('focus', function() {
+               this.parentElement.classList.add('focused');
+           });
+
+           input.addEventListener('blur', function() {
+               this.parentElement.classList.remove('focused');
+           });
+       });
+
+       // Validation en temps réel du mot de passe
+       document.getElementById('confirm_password').addEventListener('input', function() {
+           const password = document.getElementById('mot_de_passe').value;
+           const confirmPassword = this.value;
+
+           if (confirmPassword && password !== confirmPassword) {
+               this.style.borderColor = '#e74c3c';
+               this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
+           } else if (confirmPassword && password === confirmPassword) {
+               this.style.borderColor = '#27ae60';
+               this.style.boxShadow = '0 0 0 3px rgba(39, 174, 96, 0.1)';
+           } else {
+               this.style.borderColor = 'rgba(52, 152, 219, 0.2)';
+               this.style.boxShadow = 'none';
+           }
+       });
+   </script>
 </body>
 </html>

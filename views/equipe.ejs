@@ -11,18 +11,13 @@
     <script src="/js/script.js" defer></script>
 </head>
 <body>
-    <%- include('navbar') %>
+   <!-- Barre de navigation --> 
+    <%- include('navbar', { currentPage: 'equipe' }) %>
 <!-- Toast pour les notifications -->
     <div id="toast"></div>
 
-    <!-- Barre de navigation -->
-    <%- include('navbar') %>
-
     <!-- Titre principal -->
-    <h1>Notre Équipe MayGourmet</h1>
-
-    <!-- Modal pour ajouter/modifier un membre -->
-    <%- include('modalEquipe') %>
+    <h1>Mamoudzou en fête</h1>
 
     <!-- Conteneur des cartes d'équipe -->
     <div class="row">
@@ -40,7 +35,7 @@
                         '<%= result.mail %>',
                         '<%= result.telephone %>',
                         '<%= result.poste %>',
-                        '<%= result.adresse %>',
+                        '<%= result.adresse %>'
                         
                     )">
                 </div>

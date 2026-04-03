@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/accueil.css">
     <link rel="stylesheet" href="/css/navbar.css">
-
-    <title>Accueil</title>
+    <title>Accueil </title>
 </head>
 <body>
-    <%- include('navbar') %>
-    <div>
-        <h1>Bienvenue sur la page d'accueil !</h1>
-        <p>Découvrez nos services et notre équipe passionnée.</p>
-    </div>
+    <%- include('navbar', { currentPage: 'accueil' }) %>
 
+    <!-- Section Hero -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>MAMOUDZOU EN FETE</h1>
+            <p>Découvrez l'excellence culinaire mahoraise et rejoignez notre communauté passionnée</p>
+            <div class="cta-buttons">
+                <a href="/api/entreprise" class="btn-primary">Nos Entreprises</a>
+                <a href="/api/equipe" class="btn-secondary">Notre Équipe</a>
+            </div>
+        </div>
+    </section>
+
+    
 </body>
 </html>

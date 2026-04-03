@@ -38,7 +38,7 @@ function showToast(message, type = "success") {
   }, 3000);
 }
 
-function modifierMembre(id, nom, prenom, mail, telephone, poste, adresse_postale, presentation, date_recrutement) {
+function modifierMembre(id, nom, prenom, mail, telephone, poste, adresse,) {
   document.querySelector(".modal-header").textContent = "Modifier un membre";
 
   // Remplir le formulaire avec les données actuelles
@@ -47,9 +47,8 @@ function modifierMembre(id, nom, prenom, mail, telephone, poste, adresse_postale
   document.getElementById("mailMembreEquipe").value = mail || "";
   document.getElementById("telephoneMembreEquipe").value = telephone || "";
   document.getElementById("posteMembreEquipe").value = poste || "";
-  document.getElementById("adresseMembreEquipe").value = adresse_postale || "";
-  document.getElementById("presentationMembreEquipe").value = presentation || "";
-  document.getElementById("dateRecrutement").value = date_recrutement || "";
+  document.getElementById("adresseMembreEquipe").value = adresse|| "";
+  
 
   modale.style.display = "block";
 
@@ -70,7 +69,7 @@ function modifierMembre(id, nom, prenom, mail, telephone, poste, adresse_postale
       mail: document.getElementById("mailMembreEquipe").value,
       telephone: document.getElementById("telephoneMembreEquipe").value,
       poste: document.getElementById("posteMembreEquipe").value,
-      adresse
+      adresse: document.getElementById("adresseMembreEquipe").value,
     };
 
     fetch(`/api/equipe/${id}`, {

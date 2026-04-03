@@ -1,13 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/entreprise.css">
-     <link rel="stylesheet" href="/css/navbar.css">
-    <title>Entreprise</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <title>Entreprises</title>
 </head>
 <body>
-    <%- include('navbar') %>
+    <%- include('navbar', { currentPage: 'entreprise' }) %>
+
+    <div class="entreprises-container">
+        <h1>Nos Entreprises Partenaires</h1>
+
+        <!-- Messages de succès/erreur -->
+        <% if (typeof message !== 'undefined' && message) { %>
+            <div class="message <%= error ? 'error' : 'success' %>">
+                <%= message %>
+            </div>
+        <% } %>
+
+        <!-- Grille des cartes d'entreprises -->
+        <div class="entreprises-grid">
+            <% if (entreprises && entreprises.length > 0) { %>
+                <% entreprises.forEach(entreprise => { %>
+                    <div class="entreprise-card">
+                        <div class="entreprise-info">
+                            <h3><%= entreprise.societe || (entreprise.prenom + ' ' + entreprise.nom) %></h3>
+                            <p class="representant"><%= entreprise.prenom %> <%= entreprise.nom %></p>
+                            <p class="metier"><%= entreprise.metier %></p>
+                            <% if (entreprise.presentation) { %>
+                                <p class="presentation"><%= entreprise.presentation %></p>
+                            <% } %>
+                            <div class="contact-info">
+                                <p><strong>Email:</strong> <%= entreprise.mail %></p>
+                                <p><strong>Téléphone:</strong> <%= entreprise.numero %></p>
+                                <% if (entreprise.adresse) { %>
+                                    <p><strong>Adresse:</strong> <%= entreprise.adresse %></p>
+                                <% } %>
+                            </div>
+                            <button class="btn-contacter" onclick="ouvrirFormulaireContact('<%= entreprise.mail %>', '<%= entreprise.societe || entreprise.nom %>', '<%= entreprise.prenom %> <%= entreprise.nom %>')">
+                                Contacter
+                            </button>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="no-entreprises">
+                    <p>Aucune entreprise partenaire pour le moment.</p>
+                    <p>Revenez bientôt pour découvrir nos nouveaux partenaires !</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Modale de contact -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Contacter <span id="contactEntreprise"></span></h2>
+            <form id="contactForm" action="/api/contact" method="POST">
+                <input type="hidden" id="destinataireEmail" name="destinataireEmail">
+                <input type="hidden" id="entrepriseNom" name="entrepriseNom">
+
+                <div class="form-group">
+                    <label for="nomContact">Votre nom *</label>
+                    <input type="text" id="nomContact" name="nomContact" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailContact">Votre email *</label>
+                    <input type="email" id="emailContact" name="emailContact" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telephoneContact">Votre téléphone</label>
+                    <input type="tel" id="telephoneContact" name="telephoneContact">
+                </div>
+
+                <div class="form-group">
+                    <label for="sujetContact">Sujet *</label>
+                    <input type="text" id="sujetContact" name="sujetContact" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="messageContact">Message *</label>
+                    <textarea id="messageContact" name="messageContact" rows="5" required placeholder="Décrivez votre demande..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
+                    <button type="button" class="btn-cancel">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour ouvrir le formulaire de contact
+        function ouvrirFormulaireContact(email, entrepriseNom, contactNom) {
+            document.getElementById('destinataireEmail').value = email;
+            document.getElementById('entrepriseNom').value = entrepriseNom;
+            document.getElementById('contactEntreprise').textContent = entrepriseNom;
+            document.getElementById('sujetContact').value = `Demande de contact - ${entrepriseNom}`;
+
+            // Pré-remplir le message
+            const messageParDefaut = `Bonjour ${contactNom},\n\nJe souhaite obtenir plus d'informations sur votre entreprise ${entrepriseNom}.\n\nCordialement,\n[Votre nom]`;
+            document.getElementById('messageContact').value = messageParDefaut;
+
+            document.getElementById('contactModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Gestion de la modale et des messages
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('contactModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const cancelBtn = document.querySelector('.btn-cancel');
+
+            // Fermer la modale avec le X
+            if (closeBtn) {
+                closeBtn.onclick = function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+
+            // Fermer la modale avec le bouton Annuler
+            if (cancelBtn) {
+                cancelBtn.onclick = function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+
+            // Fermer la modale en cliquant en dehors
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+
+            // Gestion de la soumission du formulaire
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    // Fermer la modale après soumission
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    // Le formulaire sera traité par la route POST
+                });
+            }
+
+            // Gestion des messages de succès/erreur depuis l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+            const error = urlParams.get('error');
+
+            if (success || error) {
+                // Créer et afficher le message
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${error ? 'error' : 'success'}`;
+                messageDiv.textContent = success || error;
+
+                // L'insérer au début du container
+                const container = document.querySelector('.entreprises-container');
+                if (container) {
+                    container.insertBefore(messageDiv, container.firstChild.nextSibling);
+
+                    // Faire disparaître le message après 5 secondes
+                    setTimeout(() => {
+                        messageDiv.style.opacity = '0';
+                        setTimeout(() => {
+                            messageDiv.remove();
+                        }, 300);
+                    }, 5000);
+                }
+
+                // Nettoyer l'URL
+                window.history.replaceState(null, null, window.location.pathname);
+            }
+        });
+    </script>
 </body>
 </html>

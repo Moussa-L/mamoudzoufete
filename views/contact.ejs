@@ -15,24 +15,127 @@
     
     <!-- Lien vers la feuille de style CSS pour la barre de navigation -->
     <link rel="stylesheet" href="/css/navbar.css">
+
+    <!-- Lien vers la bibliothèque Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <!-- Corps de la page avec classe spécifique pour le style contact -->
-<body class="bodycontact">
+<body>
     <!-- Inclusion du composant de barre de navigation -->
-    <%- include('navbar') %>
+    <%- include('navbar', { currentPage: 'contact' }) %>
 
-    <!-- Titre principal de la page contact -->
-    <h1>Contactez-nous</h1>
+    <div class="contact-container">
+        <!-- Header -->
+        <div class="contact-header">
+            <h1>Contactez-nous</h1>
+            <p>Nous sommes là pour répondre à toutes vos questions</p>
+        </div>
 
-    <!-- Section contenant les informations de contact (téléphone, email, adresse) -->
-    <div class="contact-info">
-        <!-- Numéro de téléphone du restaurant -->
-        <p>Téléphone: +33 1 23 45 67 89</p>
-        
-        <!-- Adresse email pour les demandes de contact -->
-        <p>Email: contact@maygourmet.fr</p>
-        
-        <!-- Adresse physique du restaurant -->
-        <p>Adresse: 123 Rue de la Gastronomie, Paris</p>
+        <!-- Messages de succès/erreur -->
+        <% if (typeof message !== 'undefined' && message) { %>
+            <div class="message <%= error ? 'error' : 'success' %>">
+                <%= message %>
+            </div>
+        <% } %>
+
+        <!-- Contenu principal -->
+        <div class="contact-content">
+            <!-- Formulaire de contact -->
+            <div class="contact-form-section">
+                <h2>Envoyez-nous un message</h2>
+                <form class="contact-form" action="/api/contact" method="POST">
+                    <div class="form-group">
+                        <label for="nom">Nom *</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" name="prenom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail">Email *</label>
+                        <input type="email" id="mail" name="mail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sujet">Sujet</label>
+                        <select id="sujet" name="sujet">
+                            <option value="">Choisissez un sujet</option>
+                            <option value="information">Demande d'information</option>
+                            <option value="partenariat">Proposition de partenariat</option>
+                            <option value="support">Support technique</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
+                </form>
+            </div>
+
+            <!-- Informations de contact -->
+            <div class="contact-info-section">
+                <h2>Nos coordonnées</h2>
+
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-info-content">
+                        <h3>Téléphone</h3>
+                        <p>+262 639 XX XX XX</p>
+                        <p>Du lundi au vendredi, 9h-17h</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-info-content">
+                        <h3>Email</h3>
+                        <p>contact@maygourmet.yt</p>
+                        <p>Nous répondons sous 24h</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-info-content">
+                        <h3>Adresse</h3>
+                        <p>Mamoudzou, Mayotte</p>
+                        <p>France - 97600</p>
+                    </div>
+                </div>
+
+                <!-- Réseaux sociaux -->
+                <div class="social-links">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-grid">
+                        <a href="https://www.snapchat.com/add/maygourmet" target="_blank" class="social-link">
+                            <i class="fab fa-snapchat"></i>
+                        </a>
+                        <a href="https://www.instagram.com/maygourmet" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/maygourmet" target="_blank" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+</body>
+</html>
+
