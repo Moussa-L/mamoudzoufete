@@ -1,56 +1,94 @@
-const modale = document.getElementById("myModal");
-const btn = document.getElementById("myBtn");
-const span = document.getElementsByClassName("close")[0];
-const form = document.getElementById("membreForm");
+// Fichier modale.js - Gestion des interactions avec la modale d'ajout/modification de membres d'équipe
 
-// Ouvrir la modale pour ajouter
-btn.onclick = function() {
-  document.querySelector(".modal-header").textContent = "Ajouter un membre";
-  form.reset();
-  form.action = "/api/equipe";
-  form.method = "post";
-  form.onsubmit = null;
-  modale.style.display = "block";
-};
+// Sélection des éléments DOM nécessaires pour la gestion de la modale
+const modale = document.getElementById("myModal"); // Élément de la modale
+const btn = document.getElementById("myBtn"); // Bouton pour ouvrir la modale
+const span = document.getElementsByClassName("close")[0]; // Bouton de fermeture (X)
+const form = document.getElementById("membreForm"); // Formulaire dans la modale
 
-// Fermer la modale au clic sur X
-span.onclick = function() {
-  modale.style.display = "none";
-};
+// Vérification que les éléments existent avant d'ajouter les événements
+if (btn && modale) {
+  // Gestionnaire d'événement pour ouvrir la modale en mode ajout
+  btn.onclick = function() {
+    // Modification du titre de la modale pour indiquer le mode ajout
+    const header = document.querySelector(".modal-header");
+    if (header) {
+      header.textContent = "Ajouter un membre";
+    }
+    // Réinitialisation du formulaire et configuration pour l'ajout
+    if (form) {
+      form.reset(); // Vide tous les champs du formulaire
+      form.action = "/api/equipe"; // Définit l'URL d'action
+      form.method = "post"; // Méthode POST pour l'ajout
+      form.onsubmit = null; // Supprime tout gestionnaire onsubmit existant
+    }
+    // Affichage de la modale
+    modale.style.display = "block";
+  };
+}
 
-// Fermer la modale en cliquant en dehors
-window.onclick = function(event) {
-  if (event.target === modale) {
+// Vérification pour la fermeture via le bouton X
+if (span && modale) {
+  // Gestionnaire pour fermer la modale en cliquant sur X
+  span.onclick = function() {
     modale.style.display = "none";
-  }
-};
+  };
+}
 
+// Vérification pour la fermeture en cliquant en dehors de la modale
+if (modale) {
+  // Gestionnaire d'événement sur la fenêtre pour détecter les clics extérieurs
+  window.onclick = function(event) {
+    // Si le clic est sur la modale elle-même (pas sur son contenu)
+    if (event.target === modale) {
+      modale.style.display = "none";
+    }
+  };
+}
+
+// Fonction pour afficher des notifications toast
 function showToast(message, type = "success") {
+  // Sélection de l'élément toast
   const toast = document.getElementById("toast");
-  if (!toast) return;
+  if (!toast) return; // Sortie si l'élément n'existe pas
   
+  // Configuration du message et des classes CSS
   toast.textContent = message;
-  toast.classList.remove("show", "success", "error");
-  toast.classList.add("show", type);
+  toast.classList.remove("show", "success", "error"); // Suppression des classes existantes
+  toast.classList.add("show", type); // Ajout des classes pour afficher et typer le toast
   
+  // Masquage automatique après 3 secondes
   setTimeout(() => {
     toast.classList.remove("show", type);
   }, 3000);
 }
 
-function modifierMembre(id, nom, prenom, mail, telephone, poste, adresse,) {
-  document.querySelector(".modal-header").textContent = "Modifier un membre";
+function modifierMembre(id, nom, prenom, mail, telephone, poste, adresse) {
+  const header = document.querySelector(".modal-header");
+  if (header) {
+    header.textContent = "Modifier un membre";
+  }
 
   // Remplir le formulaire avec les données actuelles
-  document.getElementById("nomMembreEquipe").value = nom || "";
-  document.getElementById("prenomMembreEquipe").value = prenom || "";
-  document.getElementById("mailMembreEquipe").value = mail || "";
-  document.getElementById("telephoneMembreEquipe").value = telephone || "";
-  document.getElementById("posteMembreEquipe").value = poste || "";
-  document.getElementById("adresseMembreEquipe").value = adresse|| "";
-  
+  const nomField = document.getElementById("nomMembreEquipe");
+  const prenomField = document.getElementById("prenomMembreEquipe");
+  const mailField = document.getElementById("mailMembreEquipe");
+  const telephoneField = document.getElementById("telephoneMembreEquipe");
+  const posteField = document.getElementById("posteMembreEquipe");
+  const adresseField = document.getElementById("adresseMembreEquipe");
 
-  modale.style.display = "block";
+  if (nomField) nomField.value = nom || "";
+  if (prenomField) prenomField.value = prenom || "";
+  if (mailField) mailField.value = mail || "";
+  if (telephoneField) telephoneField.value = telephone || "";
+  if (posteField) posteField.value = poste || "";
+  if (adresseField) adresseField.value = adresse || "";
+  
+  if (modale) {
+    modale.style.display = "block";
+  }
+
+  if (!form) return;
 
   // Configurer le formulaire pour la modification
   form.action = `/api/equipe/${id}`;
@@ -64,15 +102,15 @@ function modifierMembre(id, nom, prenom, mail, telephone, poste, adresse,) {
     e.preventDefault();
 
     const data = {
-      nom: document.getElementById("nomMembreEquipe").value,
-      prenom: document.getElementById("prenomMembreEquipe").value,
-      mail: document.getElementById("mailMembreEquipe").value,
-      telephone: document.getElementById("telephoneMembreEquipe").value,
-      poste: document.getElementById("posteMembreEquipe").value,
-      adresse: document.getElementById("adresseMembreEquipe").value,
+      nom: nomField ? nomField.value : "",
+      prenom: prenomField ? prenomField.value : "",
+      mail: mailField ? mailField.value : "",
+      telephone: telephoneField ? telephoneField.value : "",
+      poste: posteField ? posteField.value : "",
+      adresse: adresseField ? adresseField.value : "",
     };
 
-    fetch(`/api/equipe/${id}`, {
+    fetch(`/api/equipe/${id}`, { 
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

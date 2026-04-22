@@ -1,44 +1,78 @@
+<%# Déclaration du type de document HTML5 %>
 <!DOCTYPE html>
+<%# Balise HTML avec langue française %>
 <html lang="fr">
+<%# En-tête du document %>
 <head>
+    <%# Encodage des caractères UTF-8 %>
     <meta charset="UTF-8">
+    <%# Configuration de la vue pour les appareils mobiles %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%# Lien vers la feuille de style CSS pour la page entreprise %>
     <link rel="stylesheet" href="/css/entreprise.css">
+    <%# Lien vers la feuille de style CSS pour la navbar %>
     <link rel="stylesheet" href="/css/navbar.css">
+    <%# Titre de la page %>
     <title>Entreprises</title>
 </head>
+<%# Corps du document %>
 <body>
+    <%# Inclusion du template de la navbar avec la page actuelle %>
     <%- include('navbar', { currentPage: 'entreprise' }) %>
 
+    <%# Conteneur principal de la page entreprises %>
     <div class="entreprises-container">
-        <h1>Nos Entreprises Partenaires</h1>
+        <%# Titre principal de la page %>
+        <h1>NOS ENTREPRISES PARTENAIRES</h1>
+        <%# Bouton pour afficher les cartes des partenaires %>
+        <button id="btnShowCards" class="btn-show-cards">Afficher les partenaires entreprise</button>
 
-        <!-- Messages de succès/erreur -->
+        <%# Section pour les messages de succès ou d'erreur %>
+        <%# Condition pour afficher le message s'il existe %>
         <% if (typeof message !== 'undefined' && message) { %>
+            <%# Div pour le message avec classe dynamique basée sur l'erreur %>
             <div class="message <%= error ? 'error' : 'success' %>">
+                <%# Affichage du message %>
                 <%= message %>
             </div>
         <% } %>
 
-        <!-- Grille des cartes d'entreprises -->
-        <div class="entreprises-grid">
+        <%# Section cachée contenant les cartes des entreprises %>
+        <div id="entreprisesSection" class="hidden">
+            <%# Grille des cartes d'entreprises %>
+            <div class="entreprises-grid">
+            <%# Condition pour vérifier s'il y a des entreprises %>
             <% if (entreprises && entreprises.length > 0) { %>
+                <%# Boucle pour afficher chaque entreprise %>
                 <% entreprises.forEach(entreprise => { %>
+                    <%# Carte individuelle pour une entreprise %>
                     <div class="entreprise-card">
+                        <%# Informations de l'entreprise %>
                         <div class="entreprise-info">
+                            <%# Nom de l'entreprise ou du représentant %>
                             <h3><%= entreprise.societe || (entreprise.prenom + ' ' + entreprise.nom) %></h3>
+                            <%# Nom du représentant %>
                             <p class="representant"><%= entreprise.prenom %> <%= entreprise.nom %></p>
+                            <%# Métier de l'entreprise %>
                             <p class="metier"><%= entreprise.metier %></p>
+                            <%# Condition pour afficher la présentation si elle existe %>
                             <% if (entreprise.presentation) { %>
+                                <%# Paragraphe de présentation %>
                                 <p class="presentation"><%= entreprise.presentation %></p>
                             <% } %>
+                            <%# Informations de contact %>
                             <div class="contact-info">
+                                <%# Email %>
                                 <p><strong>Email:</strong> <%= entreprise.mail %></p>
+                                <%# Téléphone %>
                                 <p><strong>Téléphone:</strong> <%= entreprise.numero %></p>
+                                <%# Condition pour afficher l'adresse si elle existe %>
                                 <% if (entreprise.adresse) { %>
+                                    <%# Adresse %>
                                     <p><strong>Adresse:</strong> <%= entreprise.adresse %></p>
                                 <% } %>
                             </div>
+                            <%# Bouton pour contacter l'entreprise %>
                             <button class="btn-contacter" onclick="ouvrirFormulaireContact('<%= entreprise.mail %>', '<%= entreprise.societe || entreprise.nom %>', '<%= entreprise.prenom %> <%= entreprise.nom %>')">
                                 Contacter
                             </button>
@@ -46,79 +80,116 @@
                     </div>
                 <% }); %>
             <% } else { %>
+                <%# Section affichée s'il n'y a pas d'entreprises %>
                 <div class="no-entreprises">
+                    <%# Message d'absence d'entreprises %>
                     <p>Aucune entreprise partenaire pour le moment.</p>
+                    <%# Message d'encouragement %>
                     <p>Revenez bientôt pour découvrir nos nouveaux partenaires !</p>
                 </div>
             <% } %>
+            </div>
         </div>
     </div>
 
+    <%# Modale de contact pour envoyer un message à une entreprise %>
     <!-- Modale de contact -->
     <div id="contactModal" class="modal">
+        <%# Contenu de la modale %>
         <div class="modal-content">
+            <%# Bouton de fermeture de la modale %>
             <span class="close">&times;</span>
+            <%# Titre de la modale avec le nom de l'entreprise %>
             <h2>Contacter <span id="contactEntreprise"></span></h2>
+            <%# Formulaire de contact %>
             <form id="contactForm" action="/api/contact" method="POST">
+                <%# Champ caché pour l'email destinataire %>
                 <input type="hidden" id="destinataireEmail" name="destinataireEmail">
+                <%# Champ caché pour le nom de l'entreprise %>
                 <input type="hidden" id="entrepriseNom" name="entrepriseNom">
 
+                <%# Groupe de formulaire pour le nom %>
                 <div class="form-group">
+                    <%# Étiquette pour le nom %>
                     <label for="nomContact">Votre nom *</label>
+                    <%# Champ de saisie pour le nom %>
                     <input type="text" id="nomContact" name="nomContact" required>
                 </div>
 
+                <%# Groupe de formulaire pour l'email %>
                 <div class="form-group">
+                    <%# Étiquette pour l'email %>
                     <label for="emailContact">Votre email *</label>
+                    <%# Champ de saisie pour l'email %>
                     <input type="email" id="emailContact" name="emailContact" required>
                 </div>
 
+                <%# Groupe de formulaire pour le téléphone %>
                 <div class="form-group">
+                    <%# Étiquette pour le téléphone %>
                     <label for="telephoneContact">Votre téléphone</label>
+                    <%# Champ de saisie pour le téléphone %>
                     <input type="tel" id="telephoneContact" name="telephoneContact">
                 </div>
 
+                <%# Groupe de formulaire pour le sujet %>
                 <div class="form-group">
+                    <%# Étiquette pour le sujet %>
                     <label for="sujetContact">Sujet *</label>
+                    <%# Champ de saisie pour le sujet %>
                     <input type="text" id="sujetContact" name="sujetContact" required>
                 </div>
 
+                <%# Groupe de formulaire pour le message %>
                 <div class="form-group">
+                    <%# Étiquette pour le message %>
                     <label for="messageContact">Message *</label>
+                    <%# Zone de texte pour le message %>
                     <textarea id="messageContact" name="messageContact" rows="5" required placeholder="Décrivez votre demande..."></textarea>
                 </div>
 
+                <%# Actions du formulaire %>
                 <div class="form-actions">
+                    <%# Bouton d'envoi %>
                     <button type="submit" class="btn-submit">Envoyer le message</button>
+                    <%# Bouton d'annulation %>
                     <button type="button" class="btn-cancel">Annuler</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <%# Script JavaScript pour la gestion de la modale et des interactions %>
     <script>
-        // Fonction pour ouvrir le formulaire de contact
+        // Fonction pour ouvrir le formulaire de contact avec les données de l'entreprise
         function ouvrirFormulaireContact(email, entrepriseNom, contactNom) {
+            // Définit l'email destinataire
             document.getElementById('destinataireEmail').value = email;
+            // Définit le nom de l'entreprise
             document.getElementById('entrepriseNom').value = entrepriseNom;
+            // Définit le titre de la modale avec le nom de l'entreprise
             document.getElementById('contactEntreprise').textContent = entrepriseNom;
+            // Pré-remplit le sujet du message
             document.getElementById('sujetContact').value = `Demande de contact - ${entrepriseNom}`;
 
-            // Pré-remplir le message
+            // Pré-remplit le message avec un texte par défaut
             const messageParDefaut = `Bonjour ${contactNom},\n\nJe souhaite obtenir plus d'informations sur votre entreprise ${entrepriseNom}.\n\nCordialement,\n[Votre nom]`;
             document.getElementById('messageContact').value = messageParDefaut;
 
+            // Affiche la modale
             document.getElementById('contactModal').style.display = 'block';
+            // Désactive le scroll du body
             document.body.style.overflow = 'hidden';
         }
 
-        // Gestion de la modale et des messages
+        // Gestion de la modale et des messages au chargement du DOM
         document.addEventListener('DOMContentLoaded', function() {
+            // Récupère les éléments de la modale
             const modal = document.getElementById('contactModal');
             const closeBtn = document.getElementsByClassName('close')[0];
             const cancelBtn = document.querySelector('.btn-cancel');
 
-            // Fermer la modale avec le X
+            // Fermer la modale avec le bouton X
             if (closeBtn) {
                 closeBtn.onclick = function() {
                     modal.style.display = 'none';
@@ -150,6 +221,16 @@
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                     // Le formulaire sera traité par la route POST
+                });
+            }
+
+            // Bouton pour afficher les cartes des partenaires entreprise
+            const btnShowCards = document.getElementById('btnShowCards');
+            const entreprisesSection = document.getElementById('entreprisesSection');
+            if (btnShowCards && entreprisesSection) {
+                btnShowCards.addEventListener('click', function() {
+                    entreprisesSection.classList.remove('hidden');
+                    btnShowCards.style.display = 'none';
                 });
             }
 

@@ -1,33 +1,53 @@
+<%# Déclaration du type de document HTML5 %>
 <!DOCTYPE html>
+<%# Balise HTML avec langue française %>
 <html lang="fr">
+<%# En-tête du document %>
 <head>
+    <%# Encodage des caractères UTF-8 %>
     <meta charset="UTF-8">
+    <%# Configuration de la vue pour les appareils mobiles %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%# Titre de la page %>
     <title>Equipe</title>
+    <%# Lien vers la feuille de style CSS pour l'équipe %>
     <link rel="stylesheet" href="/css/equipe.css">
+    <%# Lien vers la feuille de style CSS pour la modale %>
     <link rel="stylesheet" href="/css/modale.css">
+    <%# Lien vers la feuille de style CSS pour la navbar %>
     <link rel="stylesheet" href="/css/navbar.css">
+    <%# Script pour la modale, chargé de manière différée %>
     <script src="/js/modale.js" defer></script>
+    <%# Script pour les fonctions supplémentaires, chargé de manière différée %>
     <script src="/js/script.js" defer></script>
 </head>
+<%# Corps du document %>
 <body>
-   <!-- Barre de navigation --> 
+   <%# Barre de navigation %>
     <%- include('navbar', { currentPage: 'equipe' }) %>
-<!-- Toast pour les notifications -->
+<%# Toast pour les notifications %>
     <div id="toast"></div>
 
-    <!-- Titre principal -->
+    <%# Titre principal de la page %>
     <h1>Mamoudzou en fête</h1>
 
-    <!-- Conteneur des cartes d'équipe -->
+    <%# Conteneur des cartes d'équipe %>
     <div class="row">
+        <%# Boucle pour afficher chaque membre de l'équipe %>
         <% resultatEquipe.forEach((result) => { %>
+            <%# Carte individuelle pour un membre %>
             <div class="card">
+                <%# Nom et prénom du membre %>
                 <h2><b><%= result.nom %> <%= result.prenom %></b></h2>
+                <%# Poste du membre %>
                 <p><%= result.poste %></p>
+                <%# Image commentée %>
                 <!--<img src="/images/Gente blanca 3d.jpg" alt="Membre de l'équipe">-->
+                <%# Groupe de boutons pour les actions %>
                 <div class="button-group">
+                    <%# Bouton pour supprimer le membre %>
                     <button type="button" onclick="supprimerMembre('<%= result.id %>')">Supprimer</button>
+                    <%# Bouton pour modifier le membre %>
                     <input type="button" value="Modifier" onclick="modifierMembre(
                         '<%= result.id %>',
                         '<%= result.nom %>',
@@ -45,72 +65,103 @@
 
 
 
+     <%# Nouvelle ligne pour le bouton d'ajout %>
      <div class="row">
-    <!-- Trigger/Open The Modal -->
+    <%# Bouton pour ouvrir la modale d'ajout %>
     <button id="myBtn">Rejoignez-nous</button>
 </div>    
 
 
+<%# La modale pour ajouter un membre %>
 <!-- The Modal -->
 <div id="myModal" class="modal">
   
-  <!-- Modal content -->
+  <%# Contenu de la modale %>
 <div class="modal-content">
+    <%# En-tête de la modale %>
     <div class="modal-header">
+        <%# Bouton de fermeture %>
         <span class="close">&times;</span>
+        <%# Titre de la modale %>
         <h2>Création d'un nouveau membre</h2>
     </div>
+    <%# Corps de la modale %>
     <div class="modal-body"> 
+        <%# Texte d'introduction %>
         <p>Souhaitez-vous rejoindre notre équipe ?</p>
+        <%# Description du formulaire %>
         <p>Formulaire de candidature</p>
 
+        <%# Formulaire de candidature %>
         <!--formulaire de candidature-->
         <div class="container">
+            <%# Formulaire pour ajouter un membre %>
             <form id="membreForm" action="/api/equipe" method="post">
 
+                <%# Ligne de champs %>
                 <div class="row">
 
+                    <%# Champ nom %>
                     <div class="col-25">
+                        <%# Étiquette pour le nom %>
                         <label for="nomMembreEquipe">Nom:</label>
+                        <%# Champ de saisie pour le nom %>
                         <input type="text" id="nomMembreEquipe" name="nomMembreEquipe" placeholder="Votre nom..">
                         
                     </div> 
                     
+                    <%# Champ prénom %>
                     <div class="col-75">
+                        <%# Étiquette pour le prénom %>
                         <label for="prenomMembreEquipe">Prénom:</label>
+                        <%# Champ de saisie pour le prénom %>
                         <input type="text" id="prenomMembreEquipe" name="prenomMembreEquipe" placeholder="Votre prénom..">
                         
                     </div>
 
+                    <%# Champ email %>
                     <div class="col-25">
+                        <%# Étiquette pour l'email %>
                         <label for="mailMembreEquipe">Email:</label>
+                        <%# Champ de saisie pour l'email %>
                         <input type="email" id="mailMembreEquipe" name="mailMembreEquipe" placeholder="Votre email..">
 
                     </div>
 
+                    <%# Champ téléphone %>
                     <div class="col-75">
 
+                        <%# Étiquette pour le téléphone %>
                         <label for="telephoneMembreEquipe">Téléphone:</label>
+                        <%# Champ de saisie pour le téléphone %>
                         <input type="text" id="telephoneMembreEquipe" name="telephoneMembreEquipe" placeholder="Votre téléphone..">
 
                     </div>
 
+                    <%# Champ poste %>
                     <div class="col-25">
+                        <%# Étiquette pour le poste %>
                         <label for="posteMembreEquipe">Poste:</label>
+                        <%# Champ de saisie pour le poste %>
                         <input type="text" id="posteMembreEquipe" name="posteMembreEquipe" placeholder="Votre poste..">
                     </div>
 
 
 
+                    <%# Champ adresse %>
                     <div class="col-25">
+                        <%# Étiquette pour l'adresse %>
                         <label for="adresseMembreEquipe">Adresse:</label>
+                        <%# Champ de saisie pour l'adresse %>
                         <input type="text" id="adresseMembreEquipe" name="adresseMembreEquipe" placeholder="Votre adresse..">
                     </div>                 
 
 
                 </div>
 
+                <%# Ligne pour le bouton d'envoi du formulaire %>
                 <div class="row">
+                    <%# Bouton pour soumettre le formulaire d'ajout de membre %>
                     <button id="btnEnregistrer">Envoyer</button>
                 </div>
             </form>   
@@ -120,8 +171,10 @@
 
   
   
+  <%# Section du pied de page de la modale %>
   <div class="modal-footer">
     
+    <%# Titre du pied de page avec le nom de l'entreprise %>
     <h3>On cuisine avec MAYGOURMET </h3>
     
   </div>
@@ -129,5 +182,7 @@
 
 </div>
 
+<%# Fermeture de la balise body %>
 </body>
+<%# Fermeture de la balise html %>
 </html>

@@ -1,32 +1,22 @@
-// Ici ,je code mon serveur.js
+// Fichier serveur.js - Point d'entrée du serveur Node.js pour l'application MayGourmet
 
-// Importation du module HTTP est de stockée dans une constante (variable)nommée http
+// Importation du module HTTP natif de Node.js pour créer un serveur web
 const http = require('http');
+
+// Importation de l'application Express définie dans app.js
 const app = require('./app');
-// Maintenant, je crée un serveur web en utilisant la méthode createServer du module HTTP
+
+// Définition du numéro de port sur lequel le serveur va écouter
 const numPort = 3007;
 
+// Configuration du port dans l'application Express
 app.set('port', numPort);
 
-/*app.use((req, res) => {
-res.end('Bonjour je suis le serveur Node.js!');
-}); 
-
-    
-
-
-// ici j'ai affaire a une fonction fléchée (function) qui prend deux paramètres req (requête) et res (réponse)
-const server = http.createServer((req, res) => {*/
-
-
-
+// Création du serveur HTTP en passant l'application Express comme gestionnaire de requêtes
 const server = http.createServer(app);
 
-/*const date = new Date();
-
-// Le serveur écoute sur le port  Port signifie l'adresse locale de mon ordinateur*/
-
-    server.listen(numPort, () => {
+// Démarrage du serveur : il écoute sur le port défini et affiche un message de confirmation
+server.listen(numPort, () => {
+    // Message de confirmation dans la console indiquant que le serveur est opérationnel
     console.log("Le serveur est démarré sur le port ", numPort);
-    /*console.log( date.toLocaleString());*/
 });

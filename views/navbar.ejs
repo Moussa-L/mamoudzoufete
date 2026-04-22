@@ -1,61 +1,68 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAMOUDZOU EN FETE</title>
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <nav class="navbar" id="navbar">
-        <div class="navbar-container">
+<%# Barre de navigation principale %>
+<nav class="navbar" id="navbar">
+    <%# Conteneur de la navbar %>
+    <div class="navbar-container">
+        <%# Logo de la navbar %>
+        <div class="navbar-logo">
             
-
-            <ul class="navbar-menu" id="navbar-menu">
-                <li><a href="/api/accueil" class="<%= currentPage === 'accueil' ? 'active' : '' %>">Accueil</a></li>
-                <li><a href="/api/entreprise" class="<%= currentPage === 'entreprise' ? 'active' : '' %>">Entreprise</a></li>
-                <li><a href="/api/equipe" class="<%= currentPage === 'equipe' ? 'active' : '' %>">Équipe</a></li>
-                <li><a href="/api/contact" class="<%= currentPage === 'contact' ? 'active' : '' %>">Contact</a></li>
-                <li><a href="/api/compte" class="<%= currentPage === 'compte' ? 'active' : '' %>">S'inscrire</a></li>
-            </ul>
-
-            <div class="navbar-toggle" id="navbar-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
-    </nav>
 
-    <script>
-        // Animation de la navbar au scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        <%# Menu de navigation %>
+        <ul class="navbar-menu" id="navbar-menu">
+            <%# Lien vers la page d'accueil avec classe active si c'est la page actuelle %>
+            <li><a href="/api/accueil" class="<%= currentPage === 'accueil' ? 'active' : '' %>">Accueil</a></li>
+            <%# Lien vers la page entreprise %>
+            <li><a href="/api/entreprise" class="<%= currentPage === 'entreprise' ? 'active' : '' %>">Entreprise</a></li>
+            <%# Lien vers la page équipe %>
+            <li><a href="/api/equipe" class="<%= currentPage === 'equipe' ? 'active' : '' %>">Équipe</a></li>
+            <%# Lien vers la page contact %>
+            <li><a href="/api/contact" class="<%= currentPage === 'contact' ? 'active' : '' %>">Contact</a></li>
+            <%# Lien vers la page compte %>
+            <li><a href="/api/compte" class="<%= currentPage === 'compte' ? 'active' : '' %>">S'inscrire</a></li>
+        </ul>
+
+        <%# Bouton toggle pour le menu mobile %>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <%# Lignes du hamburger menu %>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<%# Script JavaScript pour les interactions de la navbar %>
+<script>
+    // Animation de la navbar au scroll
+    window.addEventListener('scroll', function() {
+        // Récupère l'élément navbar
+        const navbar = document.getElementById('navbar');
+        // Ajoute la classe 'scrolled' si le scroll dépasse 50px
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Menu burger pour mobile
+    const toggle = document.getElementById('navbar-toggle');
+    const menu = document.getElementById('navbar-menu');
+
+    // Écouteur d'événement pour le toggle
+    toggle.addEventListener('click', function() {
+        // Bascule la classe 'active' sur le menu et le toggle
+        menu.classList.toggle('active');
+        toggle.classList.toggle('active');
+    });
+
+    // Fermer le menu mobile quand on clique sur un lien
+    const menuLinks = document.querySelectorAll('.navbar-menu a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Supprime la classe 'active' du menu et du toggle
+            menu.classList.remove('active');
+            toggle.classList.remove('active');
         });
-
-        // Menu burger pour mobile
-        const toggle = document.getElementById('navbar-toggle');
-        const menu = document.getElementById('navbar-menu');
-
-        toggle.addEventListener('click', function() {
-            menu.classList.toggle('active');
-            toggle.classList.toggle('active');
-        });
-
-        // Fermer le menu mobile quand on clique sur un lien
-        const menuLinks = document.querySelectorAll('.navbar-menu a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                menu.classList.remove('active');
-                toggle.classList.remove('active');
-            });
-        });
-    </script>
-</body>
-</html>
+    });
+</script>

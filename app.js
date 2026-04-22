@@ -134,7 +134,7 @@ app.get('/api/contact', (req, res) => {
     console.log("Je passe dans /api/contact");
 
     // Rendu du template EJS 'contact.ejs' pour afficher la page de contact
-    res.render('contact');
+    res.render('contact', { message: undefined, error: undefined });
 
 });
 
@@ -160,9 +160,7 @@ app.post('/api/contact', (req, res) => {
     // ...
 
     // Rendu du template EJS 'contact.ejs' avec un message de succès
-    res.render('contact', { message: 'Votre message a été envoyé avec succès !' });
-
-    
+    res.render('contact', { message: 'Votre message a été envoyé avec succès !', error: false });
 
 });
 
@@ -276,6 +274,8 @@ app.post('/api/contact', (req, res) => {
     }
 
     // Ici, on pourrait envoyer un email réel avec un service comme Nodemailer
+    //Nodemailer est un module Node.js qui permet d'envoyer des emails facilement. Il supporte de nombreux services de messagerie et offre une API simple pour la création et l'envoi d'emails. Vous pouvez l'utiliser pour envoyer des emails de contact à l'entreprise en configurant un transporteur (comme SMTP) et en créant un message avec les données du formulaire.
+   // Nous allons simplement simuler l'envoi en affichant les données dans la console
     // Pour l'instant, on simule l'envoi et on redirige avec un message de succès
     console.log('=== NOUVEL EMAIL DE CONTACT ===');
     console.log(`De: ${nomContact} <${emailContact}>`);

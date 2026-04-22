@@ -1,293 +1,472 @@
+/* Importation de la police Google Fonts Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* Reset des marges et padding par défaut pour tous les éléments */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Styles du corps de la page */
 body {
+    /* Police de caractères principale */
     font-family: 'Poppins', sans-serif;
+    /* Hauteur de ligne pour une meilleure lisibilité */
     line-height: 1.6;
+    /* Couleur du texte principale */
     color: #333;
-    background-image: url('/images/taambati.png');
+    /* Image de fond */
+    background-image: url('/images/rou.png');
+    /* Taille de l'image de fond : couverture complète */
     background-size: cover;
+    /* Position centrée */
     background-position: center;
+    /* Pas de répétition */
     background-repeat: no-repeat;
+    /* Fixe lors du défilement */
     background-attachment: fixed;
 }
 
+/* Conteneur principal de la page de contact */
 .contact-container {
+    /* Largeur maximale */
     max-width: 1200px;
+    /* Centrage horizontal */
     margin: 0 auto;
+    /* Padding interne */
     padding: 40px 20px;
 }
 
+/* Section d'en-tête de la page de contact */
 .contact-header {
+    /* Alignement centré */
     text-align: center;
+    /* Marge en bas */
     margin-bottom: 60px;
+    /* Couleur du texte blanche */
     color: white;
 }
 
+/* Titre h1 dans l'en-tête */
 .contact-header h1 {
+    /* Taille de police grande */
     font-size: 3rem;
+    /* Police très grasse */
     font-weight: 700;
+    /* Marge en bas */
     margin-bottom: 20px;
+    /* Ombre portée pour le contraste */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Paragraphe dans l'en-tête */
 .contact-header p {
+    /* Taille de police */
     font-size: 1.2rem;
+    /* Opacité réduite */
     opacity: 0.9;
+    /* Largeur maximale */
     max-width: 600px;
+    /* Centrage horizontal */
     margin: 0 auto;
 }
 
+/* Contenu principal de la page de contact */
 .contact-content {
+    /* Affichage en grille */
     display: grid;
+    /* Deux colonnes égales */
     grid-template-columns: 1fr 1fr;
+    /* Écart entre les colonnes */
     gap: 60px;
+    /* Alignement en haut */
     align-items: start;
 }
 
+/* Sections du formulaire et des informations de contact */
 .contact-form-section,
 .contact-info-section {
+    /* Fond blanc semi-transparent */
     background: rgba(255, 255, 255, 0.95);
+    /* Filtre de flou arrière */
     backdrop-filter: blur(10px);
+    /* Coins arrondis */
     border-radius: 20px;
+    /* Padding interne */
     padding: 40px;
+    /* Ombre portée */
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
+/* Titres h2 dans les sections */
 .contact-form-section h2,
 .contact-info-section h2 {
+    /* Taille de police */
     font-size: 1.8rem;
+    /* Couleur bleue foncée */
     color: #2c3e50;
+    /* Marge en bas */
     margin-bottom: 30px;
+    /* Police grasse */
     font-weight: 600;
 }
 
-/* Formulaire de contact */
+/* Groupe de formulaire */
 .contact-form .form-group {
+    /* Marge en bas */
     margin-bottom: 25px;
 }
 
+/* Étiquette dans le formulaire */
 .contact-form label {
+    /* Affichage en bloc */
     display: block;
+    /* Marge en bas */
     margin-bottom: 8px;
+    /* Police grasse */
     font-weight: 600;
+    /* Couleur bleue foncée */
     color: #2c3e50;
+    /* Taille de police */
     font-size: 0.95rem;
 }
 
+/* Inputs, textarea et select dans le formulaire */
 .contact-form input,
 .contact-form textarea,
 .contact-form select {
+    /* Largeur pleine */
     width: 100%;
+    /* Padding interne */
     padding: 15px 20px;
+    /* Bordure grise */
     border: 2px solid #e9ecef;
+    /* Coins arrondis */
     border-radius: 10px;
+    /* Taille de police */
     font-size: 16px;
+    /* Couleur du texte */
     color: #2c3e50;
+    /* Fond gris clair */
     background: #f8f9fa;
+    /* Transition pour les effets */
     transition: all 0.3s ease;
+    /* Héritage de la police */
     font-family: inherit;
 }
 
+/* Focus sur les champs de formulaire */
 .contact-form input:focus,
 .contact-form textarea:focus,
 .contact-form select:focus {
+    /* Suppression du outline par défaut */
     outline: none;
+    /* Bordure bleue */
     border-color: #3498db;
+    /* Fond blanc */
     background: white;
+    /* Ombre bleue légère */
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
+/* Textarea spécifique */
 .contact-form textarea {
+    /* Redimensionnement vertical seulement */
     resize: vertical;
+    /* Hauteur minimale */
     min-height: 120px;
 }
 
+/* Bouton d'envoi du formulaire */
 .contact-form .btn-submit {
+    /* Largeur pleine */
     width: 100%;
+    /* Padding interne */
     padding: 15px 30px;
+    /* Fond dégradé vert */
     background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    /* Texte blanc */
     color: white;
+    /* Pas de bordure */
     border: none;
+    /* Coins arrondis */
     border-radius: 10px;
+    /* Taille de police */
     font-size: 1.1rem;
+    /* Police grasse */
     font-weight: 600;
+    /* Curseur pointeur */
     cursor: pointer;
+    /* Transition pour les effets */
     transition: all 0.3s ease;
+    /* Texte en majuscules */
     text-transform: uppercase;
+    /* Espacement des lettres */
     letter-spacing: 1px;
 }
 
+/* Survol du bouton d'envoi */
 .contact-form .btn-submit:hover {
+    /* Translation vers le haut */
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+    /* Ombre verte */
+    box-shadow: 0 10px 25px rgba(169, 222, 191, 0.3);
 }
 
-/* Section informations */
+/* Élément d'information de contact */
 .contact-info-item {
+    /* Affichage flex */
     display: flex;
+    /* Alignement en haut */
     align-items: flex-start;
+    /* Marge en bas */
     margin-bottom: 30px;
+    /* Padding interne */
     padding: 20px;
+    /* Fond gris clair */
     background: #f8f9fa;
+    /* Coins arrondis */
     border-radius: 10px;
-    border-left: 4px solid #3498db;
+    /* Bordure gauche jaune */
+    border-left: 4px solid #ffc400;
 }
 
+/* Icône dans l'élément d'information */
 .contact-info-icon {
+    /* Largeur et hauteur */
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    /* Fond dégradé gris */
+    background: linear-gradient(135deg, #2b2423 0%, #565656 100%);
+    /* Forme ronde */
     border-radius: 50%;
+    /* Centrage du contenu */
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Couleur blanche pour l'icône */
     color: white;
+    /* Taille de l'icône */
     font-size: 1.2rem;
+    /* Marge à droite */
     margin-right: 20px;
+    /* Pas de rétrécissement */
     flex-shrink: 0;
 }
 
+/* Contenu de l'élément d'information */
 .contact-info-content h3 {
+    /* Taille de police */
     font-size: 1.1rem;
+    /* Couleur bleue foncée */
     color: #2c3e50;
+    /* Marge en bas */
     margin-bottom: 5px;
+    /* Police grasse */
     font-weight: 600;
 }
 
+/* Paragraphe dans le contenu d'information */
 .contact-info-content p {
+    /* Couleur grise */
     color: #7f8c8d;
+    /* Hauteur de ligne */
     line-height: 1.5;
 }
 
-/* Réseaux sociaux */
+/* Section des réseaux sociaux */
 .social-links {
+    /* Marge en haut */
     margin-top: 40px;
 }
 
+/* Titre de la section réseaux sociaux */
 .social-links h3 {
+    /* Taille de police */
     font-size: 1.3rem;
+    /* Couleur bleue foncée */
     color: #2c3e50;
+    /* Marge en bas */
     margin-bottom: 20px;
+    /* Alignement centré */
     text-align: center;
 }
 
+/* Grille des liens sociaux */
 .social-grid {
+    /* Affichage en grille */
     display: grid;
+    /* Colonnes automatiques avec taille minimale */
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    /* Écart entre les éléments */
     gap: 15px;
 }
 
+/* Lien vers un réseau social */
 .social-link {
+    /* Affichage flex */
     display: flex;
+    /* Centrage horizontal et vertical */
     align-items: center;
     justify-content: center;
+    /* Padding interne */
     padding: 15px;
+    /* Coins arrondis */
     border-radius: 10px;
+    /* Suppression du soulignement */
     text-decoration: none;
+    /* Couleur blanche */
     color: white;
+    /* Police grasse */
     font-weight: 600;
+    /* Transition pour les effets */
     transition: all 0.3s ease;
+    /* Alignement centré du texte */
     text-align: center;
 }
 
+/* Icône Snapchat */
 .fa-snapchat {
+    /* Fond jaune */
     background: #ffd000;
+    /* Texte noir pour contraste */
     color: black;
 }
 
+/* Icône Instagram */
 .fa-instagram {
+    /* Fond dégradé Instagram */
     background: linear-gradient(135deg, #e13080 0%, #f56040 50%, #f77737 100%);
 }
 
+/* Icône Facebook */
 .fa-facebook {
+    /* Fond bleu Facebook */
     background: #1877f2;
 }
 
+/* Survol des liens sociaux */
 .social-link:hover {
+    /* Translation vers le haut */
     transform: translateY(-3px);
+    /* Ombre portée */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Messages de succès/erreur */
+/* Messages de succès ou d'erreur */
 .message {
+    /* Padding interne */
     padding: 15px 20px;
+    /* Coins arrondis */
     border-radius: 10px;
+    /* Marge en bas */
     margin-bottom: 30px;
+    /* Police grasse */
     font-weight: 600;
+    /* Alignement centré */
     text-align: center;
+    /* Animation d'entrée */
     animation: slideIn 0.5s ease-out;
 }
 
+/* Message de succès */
 .message.success {
+    /* Fond vert clair */
     background-color: #d4edda;
-    color: #155724;
+    /* Couleur verte */
+    color: #89e89f;
+    /* Bordure verte */
     border: 1px solid #c3e6cb;
 }
 
+/* Message d'erreur */
 .message.error {
+    /* Fond rouge clair */
     background-color: #f8d7da;
+    /* Couleur rouge foncée */
     color: #721c24;
+    /* Bordure rouge */
     border: 1px solid #f5c6cb;
 }
 
+/* Animation d'entrée des messages */
 @keyframes slideIn {
+    /* État initial : transparent et déplacé vers le haut */
     from {
         opacity: 0;
         transform: translateY(-20px);
     }
+    /* État final : opaque et en position */
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Responsive */
+/* Responsive pour tablettes */
 @media (max-width: 768px) {
+    /* Contenu de contact sur tablette */
     .contact-content {
+        /* Une seule colonne */
         grid-template-columns: 1fr;
+        /* Écart réduit */
         gap: 40px;
     }
 
+    /* Titre h1 sur tablette */
     .contact-header h1 {
+        /* Taille réduite */
         font-size: 2.2rem;
     }
 
+    /* Sections sur tablette */
     .contact-form-section,
     .contact-info-section {
+        /* Padding réduit */
         padding: 30px 20px;
     }
 
+    /* Grille sociale sur tablette */
     .social-grid {
+        /* Trois colonnes */
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
+/* Responsive pour mobiles */
 @media (max-width: 480px) {
+    /* Conteneur sur mobile */
     .contact-container {
+        /* Padding réduit */
         padding: 20px 15px;
     }
 
+    /* Titre h1 sur mobile */
     .contact-header h1 {
+        /* Taille encore réduite */
         font-size: 1.8rem;
     }
 
+    /* Grille sociale sur mobile */
     .social-grid {
+        /* Une seule colonne */
         grid-template-columns: 1fr;
     }
 
+    /* Élément d'information sur mobile */
     .contact-info-item {
+        /* Direction colonne */
         flex-direction: column;
+        /* Alignement centré */
         text-align: center;
     }
 
+    /* Icône sur mobile */
     .contact-info-icon {
+        /* Suppression de la marge droite */
         margin-right: 0;
+        /* Marge en bas */
         margin-bottom: 15px;
     }
 }

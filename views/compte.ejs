@@ -1,50 +1,84 @@
+<%# Déclaration du type de document HTML5 %>
 <!DOCTYPE html>
+<%# Balise HTML avec langue française %>
 <html lang="fr">
+<%# En-tête du document %>
 <head>
+    <%# Encodage des caractères UTF-8 %>
     <meta charset="UTF-8">
+    <%# Configuration de la vue pour les appareils mobiles %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%# Lien vers la feuille de style CSS pour la page compte %>
     <link rel="stylesheet" href="/css/compte.css">
+    <%# Lien vers la feuille de style CSS pour la navbar %>
     <link rel="stylesheet" href="/css/navbar.css">
+    <%# Lien vers Font Awesome pour les icônes %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <%# Titre de la page %>
     <title>Compte - Inscription</title>
 </head>
+<%# Corps du document %>
 <body>
+   <%# Inclusion du template de la navbar avec la page actuelle %>
    <%- include('navbar', { currentPage: 'compte' }) %>
 
+   <%# Conteneur principal de la page compte %>
    <div class="compte-container">
+       <%# En-tête de la section compte %>
        <div class="compte-header">
+           <%# Titre principal %>
            <h1>Créer un Compte</h1>
-           <p>Rejoignez la communauté MayGourmet et découvrez l'excellence culinaire</p>
+           <%# Paragraphe descriptif %>
+           <p>Rejoignez la communauté "Mamoudzou en fête" </p>
        </div>
 
+       <%# Formulaire d'inscription %>
        <form action="/api/compte" method="POST" id="registrationForm">
+           <%# Groupe de formulaire pour le nom %>
            <div class="form-group required">
+               <%# Étiquette pour le nom %>
                <label for="nom">Nom</label>
+               <%# Champ de saisie pour le nom %>
                <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
            </div>
 
+           <%# Groupe de formulaire pour le prénom %>
            <div class="form-group required">
+               <%# Étiquette pour le prénom %>
                <label for="prenom">Prénom</label>
+               <%# Champ de saisie pour le prénom %>
                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
            </div>
 
+           <%# Groupe de formulaire pour l'email %>
            <div class="form-group required">
+               <%# Étiquette pour l'email %>
                <label for="mail">Adresse Email</label>
+               <%# Champ de saisie pour l'email %>
                <input type="email" id="mail" name="mail" placeholder="votre.email@exemple.com" required>
            </div>
 
+           <%# Groupe de formulaire pour le numéro de téléphone %>
            <div class="form-group required">
+               <%# Étiquette pour le téléphone %>
                <label for="numero">Numéro de Téléphone</label>
+               <%# Champ de saisie pour le téléphone %>
                <input type="tel" id="numero" name="numero" placeholder="+262 XX XX XX XX" required>
            </div>
 
+           <%# Groupe de formulaire pour l'adresse %>
            <div class="form-group">
+               <%# Étiquette pour l'adresse %>
                <label for="adresse">Adresse</label>
+               <%# Champ de saisie pour l'adresse %>
                <input type="text" id="adresse" name="adresse" placeholder="Votre adresse complète">
            </div>
 
+           <%# Groupe de formulaire pour le mot de passe %>
            <div class="form-group required">
+               <%# Étiquette pour le mot de passe %>
                <label for="mot_de_passe">Mot de Passe</label>
+               <%# Champ de saisie pour le mot de passe %>
                <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="••••••••" required>
            </div>
 

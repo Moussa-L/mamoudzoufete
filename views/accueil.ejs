@@ -8,13 +8,16 @@
     <title>Accueil </title>
 </head>
 <body>
+    <%# Inclusion du composant de barre de navigation avec indication de la page actuelle %>
     <%- include('navbar', { currentPage: 'accueil' }) %>
 
-    <!-- Section Hero -->
+    <%# Section principale hero de la page d'accueil %>
     <section class="hero-section">
         <div class="hero-content">
             <h1>MAMOUDZOU EN FETE</h1>
-            <p>Découvrez l'excellence culinaire mahoraise et rejoignez notre communauté passionnée</p>
+            <p>Découvrez l'excellence culinaire mahoraise et rejoignez notre communauté passionnée<br>
+                "Rendez-vous le 14 juillet à 18h au marché de MAMOUDZOU"
+            </p>
             <div class="cta-buttons">
                 <a href="/api/entreprise" class="btn-primary">Nos Entreprises</a>
                 <a href="/api/equipe" class="btn-secondary">Notre Équipe</a>

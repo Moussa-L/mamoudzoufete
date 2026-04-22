@@ -1,209 +1,344 @@
 /* Styles pour la page équipe */
 
+/* Corps de la page équipe */
 body {
+    /* Fond bleu clair */
     background: #f2f6fb;
+    /* Police de caractères moderne */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Couleur du texte principale */
     color: #333;
+    /* Image de fond */
     background-image: url('/images/marcher.png');
+    /* Taille de l'image de fond : couverture complète */
     background-size: cover;
+    /* Position centrée */
     background-position: center;
+    /* Pas de répétition */
     background-repeat: no-repeat;
+    /* Fixe lors du défilement */
     background-attachment: fixed;
 }
 
+/* Toast de notification */
 #toast {
+    /* Position fixe en haut à droite */
     position: fixed;
     top: 20px;
     right: 20px;
+    /* Z-index élevé */
     z-index: 999;
+    /* Padding interne */
     padding: 12px 20px;
+    /* Coins arrondis */
     border-radius: 8px;
+    /* Masqué par défaut */
     display: none;
+    /* Police en gras */
     font-weight: bold;
 }
 
+/* Classe pour afficher le toast */
 #toast.show {
+    /* Affichage en bloc */
     display: block;
 }
 
+/* Titre principal h1 */
 h1 {
+    /* Alignement centré */
     text-align: center;
+    /* Taille de police grande */
     font-size: 2.5rem;
+    /* Marge verticale */
     margin: 30px 0 20px;
-    color: #1d3b81;
+    /* Couleur jaune */
+    color: #f0cc39;
 }
 
+/* Ligne de cartes */
 .row {
+    /* Affichage flex */
     display: flex;
+    /* Retour à la ligne */
     flex-wrap: wrap;
+    /* Justification centrée */
     justify-content: center;
+    /* Écart entre les éléments */
     gap: 20px;
+    /* Marge verticale */
     margin: 0 auto 30px;
+    /* Largeur maximale */
     max-width: 1200px;
+    /* Padding horizontal */
     padding: 0 15px;
 }
 
+/* Carte individuelle */
 .card {
+    /* Largeur calculée pour une carte */
     width: calc(100% / 1 - 40px);
+    /* Largeur maximale */
     max-width: 320px;
+    /* Fond blanc */
     background: #ffffff;
+    /* Coins arrondis */
     border-radius: 14px;
+    /* Bordure grise fine */
     border: 1px solid #dfe4ea;
+    /* Ombre portée */
     box-shadow: 0 4px 16px rgba(39, 72, 128, 0.08);
+    /* Transition pour les effets */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Padding interne */
     padding: 18px;
 }
 
+/* Survol de la carte */
 .card:hover {
+    /* Translation vers le haut */
     transform: translateY(-6px);
+    /* Ombre plus prononcée */
     box-shadow: 0 8px 22px rgba(39, 72, 128, 0.16);
 }
 
+/* Titre h2 dans la carte */
 .card h2 {
+    /* Marge verticale */
     margin: 0 0 8px;
+    /* Taille de police */
     font-size: 1.3rem;
+    /* Couleur bleue foncée */
     color: #1b2a57;
 }
 
+/* Paragraphe dans la carte */
 .card p {
+    /* Marge verticale */
     margin: 4px 0;
+    /* Couleur grise */
     color: #4a5678;
+    /* Taille de police */
     font-size: 0.95rem;
 }
 
+/* Groupe de boutons */
 .button-group {
+    /* Affichage flex */
     display: flex;
+    /* Justification espacée */
     justify-content: space-between;
+    /* Écart entre boutons */
     gap: 10px;
+    /* Marge en haut */
     margin-top: 15px;
 }
 
+/* Boutons et inputs de type button dans le groupe */
 .button-group button,
 .button-group input[type="button"] {
+    /* Flexibilité égale */
     flex: 1;
+    /* Padding interne */
     padding: 9px 12px;
+    /* Coins arrondis */
     border-radius: 8px;
+    /* Bordure transparente */
     border: 1px solid transparent;
+    /* Curseur pointeur */
     cursor: pointer;
+    /* Police en gras */
     font-weight: bold;
+    /* Taille de police */
     font-size: 0.9rem;
+    /* Transition pour les effets */
     transition: all 0.2s ease;
 }
 
+/* Bouton dans le groupe */
 .button-group button {
-    background-color: #e74c3c;
+    /* Fond jaune */
+    background-color: #f6fa9c;
+    /* Texte blanc (mais devrait être sombre pour contraste) */
     color: #fff;
 }
 
+/* Survol du bouton */
 .button-group button:hover {
-    background-color: #c0392b;
+    /* Fond jaune plus foncé */
+    background-color: #897c19;
 }
 
+/* Input de type button */
 .button-group input[type="button"] {
-    background-color: #2980b9;
+    /* Fond marron */
+    background-color: #897c19;
+    /* Texte blanc */
     color: #fff;
 }
 
+/* Survol de l'input button */
 .button-group input[type="button"]:hover {
-    background-color: #1f618d;
+    /* Fond noir */
+    background-color: #000000;
 }
 
+/* Bouton principal "Ajouter un membre" */
 #myBtn {
+    /* Largeur minimale */
     min-width: 200px;
+    /* Pas de bordure */
     border: none;
-    background: linear-gradient(135deg, #2a8dd4, #1f6bb8);
+    /* Fond dégradé noir */
+    background: linear-gradient(135deg, #000000, #000203);
+    /* Texte blanc */
     color: white;
+    /* Padding interne */
     padding: 12px 20px;
+    /* Coins arrondis */
     border-radius: 11px;
+    /* Taille de police */
     font-size: 1rem;
+    /* Curseur pointeur */
     cursor: pointer;
+    /* Police très grasse */
     font-weight: 700;
+    /* Transition pour le survol */
     transition: transform 0.2s ease;
 }
 
+/* Survol du bouton principal */
 #myBtn:hover {
+    /* Translation vers le haut */
     transform: translateY(-2px);
 }
 
 /* Formulaire de la modale */
 .container {
+    /* Largeur pleine */
     width: 100%;
+    /* Marge en haut */
     margin-top: 14px;
 }
 
+/* Ligne dans le conteneur */
 .container .row {
+    /* Affichage en grille */
     display: grid;
+    /* Écart entre éléments */
     gap: 12px;
 }
 
+/* Étiquette dans le conteneur */
 .container label {
+    /* Affichage en bloc */
     display: block;
+    /* Marge en bas */
     margin-bottom: 5px;
+    /* Police grasse */
     font-weight: 700;
+    /* Couleur bleue */
     color: #3c4d6d;
 }
 
+/* Inputs et textareas dans le conteneur */
 .container input,
 .container textarea {
+    /* Largeur pleine */
     width: 100%;
+    /* Bordure grise */
     border: 1px solid #c6d1e1;
+    /* Fond blanc */
     background: #fff;
+    /* Coins arrondis */
     border-radius: 8px;
+    /* Padding interne */
     padding: 10px;
+    /* Taille de police */
     font-size: 0.95rem;
+    /* Couleur bleue */
     color: #2b3a5c;
+    /* Box-sizing pour inclure padding */
     box-sizing: border-box;
 }
 
+/* Bouton dans le conteneur */
 .container button {
+    /* Fond vert */
     background: #27ae60;
+    /* Texte blanc */
     color: #fff;
+    /* Pas de bordure */
     border: none;
+    /* Coins arrondis */
     border-radius: 10px;
+    /* Padding interne */
     padding: 12px 18px;
+    /* Taille de police */
     font-size: 1rem;
+    /* Police grasse */
     font-weight: 700;
+    /* Curseur pointeur */
     cursor: pointer;
+    /* Marge en haut */
     margin-top: 10px;
 }
 
+/* Survol du bouton dans le conteneur */
 .container button:hover {
+    /* Fond vert plus foncé */
     background: #1e8a4b;
 }
 
-/* Message aligné si erreur/succès */
+/* Message d'erreur/succès */
 .message {
+    /* Largeur pleine */
     width: 100%;
+    /* Largeur maximale */
     max-width: 1200px;
+    /* Centrage horizontal */
     margin: 0 auto 20px;
 }
 
-/* Responsive */
+/* Responsive pour tablettes */
 @media (max-width: 900px) {
+    /* Carte sur tablette */
     .card {
+        /* Largeur maximale à 90% */
         max-width: 90%;
     }
 
+    /* Titre h1 sur tablette */
     h1 {
+        /* Taille réduite */
         font-size: 2rem;
     }
 
+    /* Ligne sur tablette */
     .row {
+        /* Écart réduit */
         gap: 14px;
     }
 
+    /* Groupe de boutons sur tablette */
     .button-group {
+        /* Direction colonne */
         flex-direction: column;
     }
 
+    /* Boutons sur tablette */
     .button-group button,
     .button-group input[type="button"] {
+        /* Largeur pleine */
         width: 100%;
     }
 }
 
+/* Responsive pour mobiles */
 @media (max-width: 550px) {
+    /* Bouton principal sur mobile */
     #myBtn {
+        /* Largeur pleine */
         width: 100%;
     }
 }

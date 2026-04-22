@@ -15,18 +15,22 @@ CREATE TABLE entreprise(
 SHOW TABLES;
 
 --Ajouter une entreprise
-INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Moussa Harouna', 'Taambati,', 'taambati@gmail.com', '0606060606', 'Militante', 'Bouéni', 'une militante et représentante de la beauté mahoraise.', 'Ouzouri wa Mtroumché');
---Ajouter une entreprise
-INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Baco ', 'Ali,', 'ali.baco@gmail.com', '0606060606', 'un chanteur et auteur compositeureur', 'Bandrélé', 'Son style de musique[1] est le mgodro.', 'Tama Music');
+INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Moussa Harouna', 'Taambati', 'taambati@gmail.com', '0606060606', 'Militante', 'Bouéni', 'une militante et représentante de la beauté mahoraise.', 'Ouzouri wa Mtroumché');
 
 --Ajouter une entreprise
-INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Fundi', 'Madi,', 'contact@tourisme-centreouest.yt', ' 0269 61 59 72', 'Agriculteur', ' Route nationale 2 - Coconi 97670 Ouangani', 
-'amateur de culture, de gastronomie, d’agriculture.', 'Le Pôle d\Excellence Rurale PER de Mayotte'),('Amida', 'Zily,', 'amida.zily@gmail.com', ' 0269 41 52 63', 'une chanteuse', 'Tsigoni', 'une chanteuse et auteure-compositrice-interprète mahoraise.', 'UVAGA'),('MAMAS', 'Shingo,', 'shinga@gmail.com', '06045356', 'Production ancestrale', 'Bandrélé', ' le travail ancestral des mamas shingos qui produisent un très beau sel blanc.', 'L’Ecomusée du sel de Bandrélé');
+INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Baco', 'Ali', 'ali.baco@gmail.com', '0606060606', 'Chanteur et auteur compositeur', 'Bandrélé', 'Son style de musique est le mgodro.', 'Tama Music');
+
+--Ajouter une entreprise
+INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Fundi', 'Madi', 'contact@tourisme-centreouest.yt', '0269 61 59 72', 'Agriculteur', 'Route nationale 2 - Coconi 97670 Ouangani', 'amateur de culture, de gastronomie, d\'agriculture.', 'Le Pôle d\'Excellence Rurale PER de Mayotte');
+
+--Ajouter une entreprise
+INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('Amida', 'Zily', 'amida.zily@gmail.com', '0269 41 52 63', 'Chanteuse', 'Tsigoni', 'une chanteuse et auteure-compositrice-interprète mahoraise.', 'UVAGA');
+
+--Ajouter une entreprise
+INSERT INTO entreprise (nom, prenom, mail, numero, metier, adresse, presentation, societe) VALUES ('MAMAS', 'Shingo', 'shinga@gmail.com', '06045356', 'Production ancestrale', 'Bandrélé', 'le travail ancestral des mamas shingos qui produisent un très beau sel blanc.', 'L\'Ecomusée du sel de Bandrélé');
 
 -- Afficher les entreprises
 SELECT * FROM entreprise;
-
---je surpprimer un l
 
 
 --- Requête de création de la table "compte"

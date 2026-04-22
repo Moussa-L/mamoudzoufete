@@ -22,24 +22,26 @@
 
 <!-- Corps de la page avec classe spécifique pour le style contact -->
 <body>
-    <!-- Inclusion du composant de barre de navigation -->
+    <%# Inclusion du composant de barre de navigation avec indication de la page actuelle %>
     <%- include('navbar', { currentPage: 'contact' }) %>
 
+    <%# Conteneur principal pour la page de contact %>
     <div class="contact-container">
-        <!-- Header -->
+        <%# Section d'en-tête de la page de contact %>
         <div class="contact-header">
-            <h1>Contactez-nous</h1>
+            <h1>Contacter-nous</h1>
             <p>Nous sommes là pour répondre à toutes vos questions</p>
         </div>
 
-        <!-- Messages de succès/erreur -->
+        <%# Affichage conditionnel des messages de succès ou d'erreur %>
         <% if (typeof message !== 'undefined' && message) { %>
+            <%# Div pour afficher le message avec classe basée sur le type d'erreur %>
             <div class="message <%= error ? 'error' : 'success' %>">
                 <%= message %>
             </div>
         <% } %>
 
-        <!-- Contenu principal -->
+        <%# Section de contenu principal de la page de contact %>
         <div class="contact-content">
             <!-- Formulaire de contact -->
             <div class="contact-form-section">
@@ -90,8 +92,8 @@
                     </div>
                     <div class="contact-info-content">
                         <h3>Téléphone</h3>
-                        <p>+262 639 XX XX XX</p>
-                        <p>Du lundi au vendredi, 9h-17h</p>
+                        <p>+262 639 01 01 01</p>
+                        <p>Du lundi au vendredi, 8h-12h</p>
                     </div>
                 </div>
 
@@ -136,6 +138,8 @@
         </div>
     </div>
 
+<%# Fermeture de la balise body %>
 </body>
+<%# Fermeture de la balise html %>
 </html>
 
